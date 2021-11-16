@@ -9,7 +9,7 @@ pipeline {
       stage('checkout') {
            steps {
              
-                git branch: 'master', url: 'https://github.com/mouryanaidu/CI-CD-using-Docker.git'
+                git branch: 'master', url: 'https://github.com/mouryanaidus/CI-CD-using-Docker.git'
              
           }
         }
@@ -26,7 +26,8 @@ pipeline {
               
                 sh 'docker build -t samplewebapp:latest .' 
                 sh 'docker tag samplewebapp mouryanaidu/samplewebapp:latest'
-              
+                //sh 'docker tag samplewebapp mouryanaidu/samplewebapp:$BUILD_NUMBER'
+               
           }
         }
      
@@ -35,8 +36,10 @@ pipeline {
             steps {
         withDockerRegistry([ credentialsId: "mou_dockid", url: "" ]) {
           sh  'docker push mouryanaidu/samplewebapp:latest'
-       
+        //  sh  'docker push mourynaidu/samplewebapp:$BUILD_NUMBER' 
         }
                   
           }
-  }
+        }
+     
+    
