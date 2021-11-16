@@ -31,15 +31,4 @@ pipeline {
           }
         }
      
-  stage('Publish image to Docker Hub') {
-          
-            steps {
-        withDockerRegistry([ credentialsId: "mou_dockid", url: "" ]) {
-          sh  'docker push mouryanaidu/samplewebapp:latest'
-        //  sh  'docker push mourynaidu/samplewebapp:$BUILD_NUMBER' 
-        }
-                  
-          }
-        }
-     
- } 
+ 
